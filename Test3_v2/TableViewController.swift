@@ -17,7 +17,7 @@ class TableViewController: UIViewController, UITableViewDelegate{
   ]
   var mainPresenter: TableViewPresenterProtocol!
 
-  @IBOutlet var tableView: UITableView!
+  @IBOutlet weak var tableView: UITableView!
   override func viewDidLoad() {
       super.viewDidLoad()
       tableView.register(UINib(nibName: "OtherNewsTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "TableViewCell")

@@ -15,7 +15,9 @@ protocol MainBuilder {
 class ModelBuilder: MainBuilder {
   static func createMainModule() -> UIViewController {
     let view = TableViewController()
-    let mainPresenter = TableViewPresenter(view: view)
+    let networkService = NetworkService()
+    
+    let mainPresenter = TableViewPresenter(view: view, networkService: networkService)
     view.mainPresenter = mainPresenter
     return view
   }

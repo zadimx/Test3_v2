@@ -20,31 +20,26 @@ class TableViewController: UIViewController, UITableViewDelegate{
   @IBOutlet weak var tableView: UITableView!
   override func viewDidLoad() {
       super.viewDidLoad()
+    
       tableView.register(UINib(nibName: "OtherNewsTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "TableViewCell")
       tableView.dataSource = self
       tableView.delegate = self;
       view.addSubview(tableView)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 }
 extension TableViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//     mainPresenter.articles?.count ?? 0
     return objectOtherTableViewCellModel.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? OtherNewsTableViewCell
     let object = objectOtherTableViewCellModel[indexPath.row]
+    print("COUNT###### \(mainPresenter.getArticles())")
+//    let object1 = mainPresenter.articles?[indexPath.row]
+//    let object = Other(dateLabel: object1?.publishedAt ?? "", historyLabel: object1?.url ?? "", descriptionNewsTextView: object1?.content ?? "", imageNews: object1?.urlToImage ?? "https://images.ua.prom.st/1954375335_w640_h640_dokshelter-alyuteh-dsf.jpg")
     cell!.set(object: object)
     return cell!
   }
@@ -53,5 +48,13 @@ extension TableViewController: UITableViewDataSource{
 }
 
 extension TableViewController: TableViewProtocol{
+  func success() {
+    tableView.reloadData()
+  }
+  
+  func failure(error: Error) {
+    print("OSHIBKA \(error)")
+  }
+  
   
 }

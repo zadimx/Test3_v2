@@ -30,16 +30,15 @@ class TableViewController: UIViewController, UITableViewDelegate{
 }
 extension TableViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//     mainPresenter.articles?.count ?? 0
-    return objectOtherTableViewCellModel.count
+    return mainPresenter.articles?.count ?? 0
+//     objectOtherTableViewCellModel.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? OtherNewsTableViewCell
-    let object = objectOtherTableViewCellModel[indexPath.row]
-    print("COUNT###### \(mainPresenter.getArticles())")
-//    let object1 = mainPresenter.articles?[indexPath.row]
-//    let object = Other(dateLabel: object1?.publishedAt ?? "", historyLabel: object1?.url ?? "", descriptionNewsTextView: object1?.content ?? "", imageNews: object1?.urlToImage ?? "https://images.ua.prom.st/1954375335_w640_h640_dokshelter-alyuteh-dsf.jpg")
+//    let object = objectOtherTableViewCellModel[indexPath.row]
+    let object1 = mainPresenter.articles?[indexPath.row]
+    let object = Other(dateLabel: object1?.publishedAt ?? "", historyLabel: object1?.url ?? "", descriptionNewsTextView: object1?.content ?? "", imageNews: object1?.urlToImage ?? "https://images.ua.prom.st/1954375335_w640_h640_dokshelter-alyuteh-dsf.jpg")
     cell!.set(object: object)
     return cell!
   }

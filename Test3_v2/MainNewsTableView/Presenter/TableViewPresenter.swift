@@ -32,8 +32,8 @@ class TableViewPresenter: TableViewPresenterProtocol {
   }
   
   func getArticles() {
-    let urlString = "https://newsapi.org/v2/top-headlines?country=us&apiKey=dda979c66ca84f9795d7856f49458efe"
-    networkService.getArticles(urlString: urlString){
+    let urlString = "https://newsapi.org/v2/top-headlines?country=us&pageSize=10&apiKey=0af1fbd249a447148be5eb4a3a6a6368"
+    self.networkService.getArticles(urlString: urlString){
       [weak self] result in guard let self = self else {return}
       DispatchQueue.main.async {
         switch result{

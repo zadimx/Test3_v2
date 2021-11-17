@@ -10,9 +10,20 @@ import UIKit
 
 protocol MainBuilder {
   static func createMainModule() -> UIViewController
+  static func createDateilCollectionViewModule(data: Articles?) -> UIViewController
 }
 
 class ModelBuilder: MainBuilder {
+  
+  static func createDateilCollectionViewModule(data: Articles?) -> UIViewController {
+    let view = DetailCollectionView()
+    let networkService = NetworkService()
+    
+    let presenter = DetailCollectionViewPresenter(view: view, networkService: networkService, data: data)
+    view.presenter = presenter
+    return view
+  }
+  
   static func createMainModule() -> UIViewController {
     let view = TableViewController()
     let networkService = NetworkService()
